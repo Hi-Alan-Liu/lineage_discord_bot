@@ -10,14 +10,28 @@ var author;
 
 router.get('/helper/kill', function(req, res) {
     if ( channelsId != null ) {
-        client.channels.cache.get(channelsId).send(`Hey ${author} 遭受敵人攻擊！`);
+        client.channels.cache.get(channelsId).send(`${author}, 正遭受敵人攻擊！ 已瞬移至其他位置。`);
+    }
+    res.json({ message: "OK" });
+});
+
+router.get('/helper/potion', function(req, res) {
+    if ( channelsId != null ) {
+        client.channels.cache.get(channelsId).send(`${author}, 身上藥水不足！ 已自動返回安全村莊。`);
     }
     res.json({ message: "OK" });
 });
 
 router.get('/helper/hp', function(req, res) {
     if ( channelsId != null ) {
-        client.channels.cache.get(channelsId).send(`Hey ${author} 身上藥水不足！`);
+        client.channels.cache.get(channelsId).send(`${author}, 生命已經見底！ 已自動返回安全村莊。`);
+    }
+    res.json({ message: "OK" });
+});
+
+router.get('/helper/bag', function(req, res) {
+    if ( channelsId != null ) {
+        client.channels.cache.get(channelsId).send(`${author}, 需要整理一下背包！ 已自動返回安全村莊。`);
     }
     res.json({ message: "OK" });
 });
